@@ -22,11 +22,7 @@
     <Folder Include="Application\" />
     <Folder Include="DTO\ExternalApiModel\Embeded\" />
     <Folder Include="DTO\ExternalApiModel\Request\" />
-    <Folder Include="DTO\InternalApiModel\Embeded\" />
-    <Folder Include="DTO\InternalApiModel\Request\" />
-    <Folder Include="DTO\InternalApiModel\Response\" />
     <Folder Include="Extensions\" />
-    <Folder Include="INfrastructure\Repository\" />
   </ItemGroup>
 
 </Project>

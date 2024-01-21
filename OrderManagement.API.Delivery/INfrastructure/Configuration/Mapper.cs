@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using OrderManagement.API.Delivery.DTO.ExternalApiModel.Response;
 using OrderManagement.API.Delivery.INfrastructure.Entities;
 
 namespace OrderManagement.API.Delivery.INfrastructure.Configuration
@@ -8,7 +7,8 @@ namespace OrderManagement.API.Delivery.INfrastructure.Configuration
     {
         public Mapper()
         {
-            CreateMap<Order,OrderResponse>().ReverseMap();
+            CreateMap<Order,DTO.ExternalApiModel.Response.OrderResponse>().ReverseMap();
+            CreateMap<Order,DTO.InternalAPIModel.Response.OrderResponse>().ReverseMap();
         }
     }
 }
