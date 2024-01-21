@@ -1,12 +1,11 @@
-﻿namespace OrderManagement.API.Delivery.INfrastructure.Repository
+﻿using OrderManagement.API.Delivery.DTO.ExternalApiModel.Request;
+using OrderManagement.API.Delivery.DTO.ExternalApiModel.Response;
+
+namespace OrderManagement.API.Delivery.INfrastructure.Repository
 {
-    public interface IOrderManagementRepository <TEntity> where TEntity : class
+    public interface IOrderManagementRepository 
     {
-        Task<IEnumerable<TEntity>> GetAllOrderAsync();
-        Task<TEntity> GetOrderByCustomerIdAsync(Guid id);
-        Task AddOrderAsync(TEntity entity);
-        Task UpdateOrderAsync(TEntity entity);
-        Task DeleteOrderAsync(Guid id);
+        Task<OrderResponse> GetOrderByCustomerIdAsync(CustomerIdRequest customerIdRequest);
 
     }
 }
