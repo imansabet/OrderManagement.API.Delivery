@@ -22,12 +22,10 @@ namespace OrderManagement.API.Delivery.INfrastructure.Repository
                 throw new ArgumentNullException(nameof(customerIdRequest));
             }
 
-            // اتصال به دیتابیس و بازیابی اطلاعات مرتبط با customerIdRequest
             var orderData = await _dbContext.Orders
                 .Where(o => o.CustomerId == customerIdRequest.Id)
                 .FirstOrDefaultAsync();
 
-            // اگر داده‌های مورد نظر را دریافت کردید، آنها را به OrderResponse تبدیل کنید و برگردانید.
             if (orderData != null)
             {
                 var orderResponse = new OrderResponse
@@ -39,8 +37,6 @@ namespace OrderManagement.API.Delivery.INfrastructure.Repository
                 return orderResponse;
             }
 
-            // اگر داده‌ای یافت نشد، می‌توانید یک رفتار مورد نظر را اجرا کنید.
-            // برای مثال می‌توانید یک خطای مناسب برگردانید یا یک مقدار پیش‌فرض.
 
             return null;
         }
