@@ -29,12 +29,10 @@ namespace OrderManagement.API.Delivery.Controllers
                     return Ok(orderResponse);
                 }
 
-                // اگر داده‌ای یافت نشد، می‌توانید یک پاسخ مناسب ارسال کنید.
                 return NotFound("Order not found for the given customer ID.");
             }
             catch (Exception ex)
             {
-                // مدیریت خطاهایی که ممکن است در زمان اجرا رخ دهند
                 return StatusCode(500, $"Internal server error: {ex.Message}");
             }
         }
