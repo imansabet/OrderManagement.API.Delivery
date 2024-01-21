@@ -21,7 +21,6 @@
     <Folder Include="DTO\InternalApiModel\Response\" />
     <Folder Include="Extensions\" />
     <Folder Include="INfrastructure\Configuration\" />
-    <Folder Include="INfrastructure\Entities\" />
     <Folder Include="INfrastructure\Repository\" />
   </ItemGroup>
 
