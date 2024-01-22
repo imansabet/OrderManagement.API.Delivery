@@ -64,7 +64,7 @@ namespace OrderManagement.API.Delivery.INfrastructure.Repository
             {
                 Description = orderRequest.Description,
                 TotalAmount = orderRequest.TotalAmount,
-                CustomerId = orderRequest.CustomerId
+                CustomerId = orderRequest.OrderId
             };
 
             _dbContext.Orders.Add(newOrder);
@@ -81,16 +81,16 @@ namespace OrderManagement.API.Delivery.INfrastructure.Repository
 
         public async Task<OrderResponse> UpdateOrderAsync(OrderRequest orderRequest)
         {
-            if (orderRequest == null || orderRequest.CustomerId == Guid.Empty)
+            if (orderRequest == null || orderRequest.OrderId == Guid.Empty)
             {
                 throw new ArgumentNullException(nameof(orderRequest));
             }
 
-            var existingOrder = await _dbContext.Orders.FindAsync(orderRequest.CustomerId);
+            var existingOrder = await _dbContext.Orders.FindAsync(orderRequest.OrderId);
 
             if (existingOrder == null)
             {
-                return null; // یک پاسخ خاص برای حالت عدم یافتن سفارش
+                return null; 
             }
 
             existingOrder.Description = orderRequest.Description;
@@ -106,7 +106,6 @@ namespace OrderManagement.API.Delivery.INfrastructure.Repository
 
             return orderResponse;
         }
-
         public async Task<bool> DeleteOrderAsync(Guid orderId)
         {
             var orderToDelete = await _dbContext.Orders.FindAsync(orderId);
