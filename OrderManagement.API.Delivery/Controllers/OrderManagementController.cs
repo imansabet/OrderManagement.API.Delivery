@@ -5,36 +5,69 @@ using OrderManagement.API.Delivery.INfrastructure.Repository;
 
 namespace OrderManagement.API.Delivery.Controllers
 {
+    [Route("api/orders")]
     [ApiController]
-    [Route("api/[controller]")]
     public class OrderController : ControllerBase
     {
-        private readonly IOrderManagementRepository _orderManagementRepository;
+        private readonly IOrderManagementRepository _orderRepository;
 
-        public OrderController(IOrderManagementRepository orderManagementRepository)
+        public OrderController(IOrderManagementRepository orderRepository)
         {
-            _orderManagementRepository = orderManagementRepository ?? throw new ArgumentNullException(nameof(orderManagementRepository));
+            _orderRepository = orderRepository;
         }
 
-        [HttpGet("GetOrder")]
-        public async Task<ActionResult<OrderResponse>> GetOrderById(Guid customerId)
+        [HttpGet("{customerId}")]
+        public async Task<IActionResult> GetOrderByCustomerId(Guid customerId)
         {
-            try
-            {
-                var customerIdRequest = new CustomerIdRequest { Id = customerId };
-                var orderResponse = await _orderManagementRepository.GetOrderByCustomerIdAsync(customerIdRequest);
+            var customerIdRequest = new CustomerIdRequest { Id = customerId };
+            var orderResponse = await _orderRepository.GetOrderByCustomerIdAsync(customerIdRequest);
 
-                if (orderResponse != null)
-                {
-                    return Ok(orderResponse);
-                }
-
-                return NotFound("Order not found for the given customer ID.");
-            }
-            catch (Exception ex)
+            if (orderResponse == null)
             {
-                return StatusCode(500, $"Internal server error: {ex.Message}");
+                return NotFound();
             }
+
+            return Ok(orderResponse);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetAllOrders()
+        {
+            var ordersResponse = await _orderRepository.GetAllOrdersAsync();
+            return Ok(ordersResponse);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddOrder(OrderRequest orderRequest)
+        {
+            var orderResponse = await _orderRepository.AddOrderAsync(orderRequest);
+            return CreatedAtAction(nameof(GetOrderByCustomerId), new { customerId = orderResponse.Id }, orderResponse);
+        }
+
+        [HttpPut]
+        public async Task<IActionResult> UpdateOrder(OrderRequest orderRequest)
+        {
+            var updatedOrderResponse = await _orderRepository.UpdateOrderAsync(orderRequest);
+
+            if (updatedOrderResponse == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(updatedOrderResponse);
+        }
+
+        [HttpDelete("{orderId}")]
+        public async Task<IActionResult> DeleteOrder(Guid orderId)
+        {
+            var isDeleted = await _orderRepository.DeleteOrderAsync(orderId);
+
+            if (!isDeleted)
+            {
+                return NotFound();
+            }
+
+            return NoContent();
         }
     }
 }
