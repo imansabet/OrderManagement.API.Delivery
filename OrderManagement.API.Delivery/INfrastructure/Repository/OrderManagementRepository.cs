@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.EntityFrameworkCore;
-using OrderManagement.API.Delivery.DTO.ExternalApiModel.Request;
-using OrderManagement.API.Delivery.DTO.ExternalApiModel.Response;
+using OrderManagement.API.Delivery.DTO.InternalAPIModel.Request;
+using OrderManagement.API.Delivery.DTO.InternalAPIModel.Response;
 using OrderManagement.API.Delivery.INfrastructure.Configuration;
 
 namespace OrderManagement.API.Delivery.INfrastructure.Repository

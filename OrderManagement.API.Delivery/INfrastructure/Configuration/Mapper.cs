@@ -7,7 +7,7 @@ namespace OrderManagement.API.Delivery.INfrastructure.Configuration
     {
         public Mapper()
         {
-            CreateMap<Order,DTO.ExternalApiModel.Response.OrderResponse>().ReverseMap();
+            //CreateMap<Order,DTO.ExternalApiModel.Response.OrderResponse>().ReverseMap();
             CreateMap<Order,DTO.InternalAPIModel.Response.OrderResponse>().ReverseMap();
             //CreateMap<Customer, DTO.ExternalApiModel.Request.CustomerIdRequest>.ReverseMap();
             //CreateMap<Customer, DTO.InternalAPIModel.Request.CustomerIdRequest>.ReverseMap();

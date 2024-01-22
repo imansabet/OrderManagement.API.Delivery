@@ -1,5 +1,5 @@
-﻿using OrderManagement.API.Delivery.DTO.ExternalApiModel.Request;
-using OrderManagement.API.Delivery.DTO.ExternalApiModel.Response;
+﻿using OrderManagement.API.Delivery.DTO.InternalAPIModel.Request;
+using OrderManagement.API.Delivery.DTO.InternalAPIModel.Response;
 
 namespace OrderManagement.API.Delivery.INfrastructure.Repository
 {

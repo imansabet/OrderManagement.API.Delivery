@@ -21,6 +21,8 @@
   <ItemGroup>
     <Folder Include="Application\" />
     <Folder Include="DTO\ExternalApiModel\Embeded\" />
+    <Folder Include="DTO\ExternalApiModel\Request\" />
+    <Folder Include="DTO\ExternalApiModel\Response\" />
     <Folder Include="Extensions\" />
   </ItemGroup>
 
