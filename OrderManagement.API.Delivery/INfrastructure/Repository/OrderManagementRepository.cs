@@ -81,12 +81,12 @@ namespace OrderManagement.API.Delivery.INfrastructure.Repository
 
         public async Task<OrderResponse> UpdateOrderAsync(OrderRequest orderRequest)
         {
-            if (orderRequest == null)
+            if (orderRequest == null || orderRequest.CustomerId == Guid.Empty)
             {
                 throw new ArgumentNullException(nameof(orderRequest));
             }
 
-            var existingOrder = await _dbContext.Orders.FindAsync(orderRequest.Id);
+            var existingOrder = await _dbContext.Orders.FindAsync(orderRequest.CustomerId);
 
             if (existingOrder == null)
             {
